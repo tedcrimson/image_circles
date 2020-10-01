@@ -1,3 +1,4 @@
+import 'dart:math';
 import 'dart:typed_data';
 
 import 'package:firebase_database/firebase_database.dart';
@@ -19,6 +20,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
@@ -43,7 +45,7 @@ class _MyHomePageState extends State<MyHomePage> {
   bool _showPicture = false;
   bool _circleShape = true;
   List<CircleModel> circles;
-  int count = 300;
+  int count = 3000;
   Database database;
   @override
   void initState() {
@@ -53,7 +55,7 @@ class _MyHomePageState extends State<MyHomePage> {
       database = Database.fromJson(value.value);
 
       circles = [];
-      _downloadImage(database.logos.levels[0].questions[0].url).then((value) {
+      _downloadImage(database.logos.levels[Random().nextInt(2)].questions[0].url).then((value) {
         bytes = value.buffer.asUint8List();
         image = img.decodeImage(bytes);
         print(image);

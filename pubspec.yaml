@@ -33,6 +33,7 @@ dependencies:
   firebase_database:
   firebase_messaging:
   cached_network_image:
+  image:
 
 dev_dependencies:
   flutter_test:
